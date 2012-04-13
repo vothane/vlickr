@@ -1,3 +1,6 @@
+$:.unshift(File.join(File.dirname(__FILE__), ".", "acts_as_voodoo"))
+require 'acts_as_voodoo'
+
 class Player < ActiveResource::Base
    my_api_key    = 'JkN2w61tDmKgPl4y395Rp1vAdlcq.IqBgb'
    my_api_secret = 'nU2WjeYoEY0MJKtK1DRpp1c6hNRoHgwpNG76dJkX'
