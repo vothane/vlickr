@@ -23,12 +23,3 @@ doc/
 *~
 .project
 .idea
-*.rbc
-*.sassc
-.sass-cache
-capybara-*.html
-/.bundle
-/vendor/bundle
-/log/*
-/tmp/*
-**.orig

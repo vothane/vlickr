@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'active_resource'
 require 'active_support'
+$:.unshift(File.join(File.dirname(__FILE__)))
 require 'query'
 require 'ooyala'
 require 'helper'

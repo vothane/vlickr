@@ -30,7 +30,7 @@ describe Album do
   describe "validations" do
 
     it "should have a user id" do
-      album.new(@attr).should_not be_valid
+      @album.new(@attr).should_not be_valid
     end
 
     it "should require nonblank content" do
