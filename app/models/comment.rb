@@ -1,6 +1,8 @@
 class Comment < ActiveRecord::Base
-  attr_accessor :remark
+  attr_accessor :content
 
-  belongs_to :user
   belongs_to :video
+  
+  validates :content, :presence => true, :length => { :maximum => 140 }
+  validates :video_id, :presence => true
 end
