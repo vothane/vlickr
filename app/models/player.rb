@@ -7,5 +7,5 @@ class Player < ActiveResource::Base
 
    acts_as_voodoo :api_key => my_api_key, :api_secret => my_api_secret
 
-   self.site = "https://api.ooyala.com/v2"
+   self.site = "https://api.ooyala.com/v2" 
 end
