@@ -11,7 +11,13 @@ Factory.sequence :name do |n|
   "Person #{n}"
 end
 
+Factory.define :video do |comment|
+  comment.title "Lorem Vid"
+  comment.association :album
+end
+
 Factory.define :comment do |comment|
   comment.content "Lorem Something Something?"
   comment.association :user
+  comment.association :video
 end
