@@ -22,8 +22,4 @@ class User < ActiveRecord::Base
   def unfollow(user)
     Relationship.first(:user_id => user.id, :follower_id => self.id).destroy
   end
-
-  def create_video
-    #
-  end
 end
