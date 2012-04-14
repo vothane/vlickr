@@ -15,15 +15,15 @@ class Video < ActiveRecord::Base
   private
   
   def upload_video
-    video            = Asset.new
-    video.name       = ''
-    video.file_name  = ''
-    video.asset_type = ''
-    video.file_size  = ''
-    video.chunk_size = ''
+    #video            = Asset.new
+    #video.name       = ''
+    #video.file_name  = ''
+    #video.asset_type = ''
+    #video.file_size  = ''
+    #video.chunk_size = ''
     # One of [live, paused]
-    video.status     = "live"
-    video.save
+    #video.status     = "live"
+    #video.save
   end
   
   def destroy_video
