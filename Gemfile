@@ -16,6 +16,7 @@ gem 'jquery-rails',   '2.0.2'
 
 group :test do
   gem 'factory_girl_rails', '1.7.0'
+  gem 'fakeweb',            '1.3.0'
 end
 
 group :development, :test do

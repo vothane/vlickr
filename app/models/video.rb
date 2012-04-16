@@ -4,7 +4,7 @@ class Video < ActiveRecord::Base
   belongs_to :album
   has_many   :comments
   
-  before_save   :upload_video
+  after_save    :upload_video
   after_destroy :destroy_video
   
   validates :embed_code,  :presence => true
@@ -15,15 +15,15 @@ class Video < ActiveRecord::Base
   private
   
   def upload_video
-    #video            = Asset.new
-    #video.name       = ''
-    #video.file_name  = ''
-    #video.asset_type = ''
-    #video.file_size  = ''
-    #video.chunk_size = ''
+    video            = Asset.new
+    video.name       = ''
+    video.file_name  = ''
+    video.asset_type = ''
+    video.file_size  = ''
+    video.chunk_size = ''
     # One of [live, paused]
-    #video.status     = "live"
-    #video.save
+    video.status     = "live"
+    video.save
   end
   
   def destroy_video
