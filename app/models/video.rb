@@ -1,5 +1,5 @@
 class Video < ActiveRecord::Base
-  attr_accessor :embed_code, :title, :description, :image_url
+  attr_accessor :embed_code, :title, :description, :image_url, :file, :size
 
   belongs_to :album
   has_many   :comments

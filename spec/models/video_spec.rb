@@ -20,7 +20,6 @@ describe Video do
   end
 
   it "should create a new instance with valid attributes" do
-    @album.videos.stub(:__send__).and_return(true)
     @album.videos.create!(@attr)
   end
 
@@ -66,7 +65,6 @@ describe Video do
   describe "acts_as_voodoo integration" do
 
     it "should send a create call when created" do
-      @album.videos.stub(:before_save).and_return(true)
       @album.videos.create(@attr)
     end
   end
