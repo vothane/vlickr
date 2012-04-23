@@ -14,8 +14,6 @@ class Album < ActiveRecord::Base
   private
   
   def create_ooyala_label
-    #label = Lable.new
-    #label.name = :name
-    #label.save
+    Label::create_label(:title)
   end  
 end

@@ -5,9 +5,12 @@ describe Album do
   before(:each) do
     @user = Factory(:user)
     @attr = { :title => "lorem ipsum", :description => "lorem ipsum yada yada" }
+    @label = mock_model('Label')
+    @label.stub!(:create_label).and_return(true)
   end
   
   it "should create a new instance with valid attributes" do
+    Label.should_receive(:create_label).and_return(true)
     @user.albums.create!(@attr)
   end
   
@@ -28,9 +31,13 @@ describe Album do
   end
   
   describe "validations" do
+    
+    before(:each) do
+      @album = @user.albums.create(@attr)
+    end
 
     it "should have a user id" do
-      @album.new(@attr).should_not be_valid
+      @album.create(@attr).should_not be_valid
     end
 
     it "should require nonblank content" do
