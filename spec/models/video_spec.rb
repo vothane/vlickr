@@ -17,9 +17,12 @@ describe Video do
   before(:each) do
     @album = Factory(:album)
     @attr = { :embed_code => "g0YzBnMjoGiHUtGoWW4pFzzhTZpKLZUi", :title => "lorem", :description => "lorem ipsum yada yada", :image_url => "www.exaple.com/pic.jpeg" }
+    @ar = mock_model('Asset')
+    @ar.stub!(:upload_video).and_return(true)
   end
 
   it "should create a new instance with valid attributes" do
+    Asset.should_receive(:upload_video).and_return(true)
     @album.videos.create!(@attr)
   end
 

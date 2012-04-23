@@ -9,7 +9,7 @@ require 'active_resource_mock'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-ActiveResource::Base.send :include, ActiveResource::FakeResource
+#ActiveResource::Base.send :include, ActiveResource::FakeResource
 
 RSpec.configure do |config|
   # ## Mock Framework

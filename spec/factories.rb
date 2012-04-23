@@ -19,6 +19,11 @@ end
 
 Factory.define :video do |video|
   video.title       "Lorem Vid"
+  video.embed_code  "oausvoipjioajvoia" 
+  video.description "A video to show off" 
+  video.image_url   "www.example.com/example.png" 
+  video.file        "c:/example.mov" 
+  video.size        "100000"  
   video.association :album
 end
 

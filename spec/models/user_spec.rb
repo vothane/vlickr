@@ -83,7 +83,12 @@ describe User do
     let(:user)       { FactoryGirl.create(:user) }
     let(:other_user) { FactoryGirl.create(:user) }
     let(:third_user) { FactoryGirl.create(:user) }
-
+    let(:follower)   { FactoryGirl.create(:user) }
+    let(:followed)   { FactoryGirl.create(:user) }
+    let(:relationship) do
+      follower.relationships.build(followed_id => followed.id)
+    end
+    
     before { user.follow!(other_user) }
 
     let(:own_post)        { user.comments.create!(content => "lorem ipsum whatever") }
