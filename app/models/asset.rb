@@ -3,10 +3,8 @@ require 'acts_as_voodoo'
 require 'ooyala'
 
 class Asset < ActiveResource::Base
-  my_api_key    = 'JkN2w61tDmKgPl4y395Rp1vAdlcq.IqBgb'
-  my_api_secret = 'nU2WjeYoEY0MJKtK1DRpp1c6hNRoHgwpNG76dJkX'
 
-  acts_as_voodoo :api_key => my_api_key, :api_secret => my_api_secret
+  acts_as_voodoo :api_key => APP_CONFIG['ooyala_api']['api_key'], :api_secret => APP_CONFIG['ooyala_api']['api_secret']
 
   self.site = "https://api.ooyala.com/v2"
   
@@ -21,8 +19,8 @@ class Asset < ActiveResource::Base
     
     path       = "/#{video_record.embed_code}/uploading_urls"
     upload_url = Asset.find(:all, :from => path).first
-    params     = { 'api_key' => :api_key, 'expires' => OOYALA::expires }
-    signature  = OOYALA::generate_signature(:api_secret, "GET", path, params, nil)
+    params     = { 'api_key' => APP_CONFIG['ooyala_api']['api_key'], 'expires' => OOYALA::expires }
+    signature  = OOYALA::generate_signature( APP_CONFIG['ooyala_api']['api_secret'], "GET", path, params, nil )
     upload_url = "#{upload_url}?api_key=#{:api_key}&expires=#{params['expires']}&signature=#{signature}"
     
     EventMachine.run {

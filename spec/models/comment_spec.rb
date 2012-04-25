@@ -3,6 +3,8 @@ require 'spec_helper'
 describe Comment do
 
   before(:each) do
+    @asset = mock_model('Asset')
+    @asset.stub!(:upload_video).and_return(true)
     @video = Factory(:video)
     @attr = { :content => "lorem ipsum yada yada foobar" }
   end
@@ -14,6 +16,8 @@ describe Comment do
   describe "video associations" do
 
     before(:each) do
+      @asset = mock_model('Video')
+      @asset.stub!(:upload_video).and_return(true)
       @comment = @video.comments.create(@attr)
     end
 

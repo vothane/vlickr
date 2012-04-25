@@ -1,0 +1,20 @@
+development: &non_production_settings
+  ooyala_api:
+    api_key:    JkN2w61tDmKgPl4y395Rp1vAdlcq.IqBgb
+    api_secret: nU2WjeYoEY0MJKtK1DRpp1c6hNRoHgwpNG76dJkX
+  mailer:
+    server: mail.example.com
+    username: bubba
+    password: s0meth1ngs3cr3t
+
+test:
+  <<: *non_production_settings
+
+production:
+  ooyala_api:
+    api_key:    JkN2w61tDmKgPl4y395Rp1vAdlcq.IqBgb
+    api_secret: nU2WjeYoEY0MJKtK1DRpp1c6hNRoHgwpNG76dJkX
+  mailer:
+    server: mail.example.com
+    username: bart
+    password: 1c2r3c4g,8,938,7
