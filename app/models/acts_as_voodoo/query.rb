@@ -1,4 +1,14 @@
 module Query
+   OPERATOR_MAP = {
+      :== => "=",
+      :>= => ">=",
+      :<= => "<=",
+      :>  => ">",
+      :<  => "<",
+      :^  => "!=",
+      :*  => "IN",
+      :=~ => "INCLUDES"
+   }
    class Conditions
       def initialize(&block)
          @columns = []
@@ -35,17 +45,6 @@ module Query
       def initialize(name)
          @name = name
       end
-
-      OPERATOR_MAP = {
-         :== => "=",
-         :>= => ">=",
-         :<= => "<=",
-         :>  => ">",
-         :<  => "<",
-         :^  => "!=",
-         :*  => "IN",
-         :=~ => "INCLUDES"
-      }
 
       [:==, :>=, :<=, :>, :<, :^, :*, :=~].each do |operator|
          define_method(operator) do |operand|

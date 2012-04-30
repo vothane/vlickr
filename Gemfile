@@ -1,12 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'rails',        '3.2.2'
+gem 'rails',           '3.2.2'
 
-gem 'json',         '1.6.6'
+gem 'json',            '1.6.6'
 
-gem 'jquery-rails', '2.0.2'
+gem 'jquery-rails',    '2.0.2'
 
-gem 'eventmachine', '0.12.10'
+gem 'eventmachine',    '1.0.0.beta.4'
+
+gem 'em-http-request', '1.0.2'
 
 # Gems used only for assets and not required
 # in production environments by default.

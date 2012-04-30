@@ -60,7 +60,7 @@ describe Video do
   describe "accessible attributes" do
     it "should not allow access to album_id" do
       expect do
-        @album.videos.new(album_id => album.id)
+        @album.videos.new(:album_id => album.id)
       end.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
     end    
   end

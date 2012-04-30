@@ -37,7 +37,7 @@ describe Album do
     end
 
     it "should have a user id" do
-      @album.create(@attr).should_not be_valid
+      Album.create(@attr).should_not be_valid
     end
 
     it "should require nonblank content" do

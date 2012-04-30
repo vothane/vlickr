@@ -37,7 +37,7 @@ Another way of storing videos is up in the cloud where services such as the Ooya
 video storage and administration facilities as well as Flash players to play videos. 
 The advantages of using cloud storage are:
 
-* Very scalable, can store ver large amounts of data in the cloud
+* Very scalable, can store very large amounts of data in the cloud
 * Very little to no consideration for maintenance of servers or facilities
 * Considerably cheaper than storing the data yourselves
 * Can be used by multiple servers at the same time

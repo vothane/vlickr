@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessor :name, :email
 
-  has_many :relationships,  :foreign_key => "follower_id", :dependent => :destroy
+  has_many :relationships,  :dependent => :destroy, :foreign_key => "follower_id"
   has_many :follows,        :through     => :relationships, :class_name => "User", :source => "follower_id"
   has_many :albums,         :dependent   => :destroy
   has_many :videos,         :through     => :albums, :dependent => :destroy
@@ -21,22 +21,22 @@ class User < ActiveRecord::Base
                     :uniqueness => { :case_sensitive => false }
                     
   def follow(user)
-    Relationship.create(:user => user, :follower => self)
+    relationships.create(:user => user, :follower => self)
   end
 
   def unfollow(user)
-    Relationship.first(:user_id => user.id, :follower_id => self.id).destroy
+    relationships.first(:user_id => user.id, :follower_id => self.id).destroy
   end
 
   def following?(other_user)
-    self.relationships.find_by_followed_id(other_user.id)
+    relationships.find_by_followed_id(other_user.id)
   end
 
   def follow!(other_user)
-    self.relationships.create!(followed_id => other_user.id)
+    relationships.create!(:followed_id => other_user.id)
   end
 
   def unfollow!(other_user)
-    self.relationships.find_by_followed_id(other_user.id).destroy
+    relationships.find_by_followed_id(other_user.id).destroy
   end
 end

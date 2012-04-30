@@ -91,9 +91,9 @@ describe User do
 
     before { user.follow!(other_user) }
 
-    let(:own_post)        { user.comments.create!(content => "lorem ipsum whatever") }
-    let(:followed_post)   { other_user.comments.create!(content => "lorem ipsum @#$$") }
-    let(:unfollowed_post) { third_user.comments.create!(content => "fkdtjdtuh rr") }
+    let(:own_post)        { user.comments.create!(:content => "lorem ipsum whatever") }
+    let(:followed_post)   { other_user.comments.create!(:content => "lorem ipsum @#$$") }
+    let(:unfollowed_post) { third_user.comments.create!(:content => "fkdtjdtuh rr") }
 
     subject { comment.from_users_followed_by(user) }
 
@@ -115,11 +115,11 @@ describe User do
 
     describe "followed user" do
       subject { other_user }
-      its(:followers) { should include(@user) }
+      its(:followers) { should include(user) }
     end
 
     describe "and unfollowing" do
-      before { @user.unfollow!(other_user) }
+      before { user.unfollow!(other_user) }
 
       it { should_not be_following(other_user) }
       its(:followed_users) { should_not include(other_user) }
