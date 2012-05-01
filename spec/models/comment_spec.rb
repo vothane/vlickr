@@ -4,7 +4,7 @@ describe Comment do
 
   before(:each) do
     @asset = mock_model('Asset')
-    @asset.stub!(:upload_video).and_return(true)
+    Asset.stub!(:upload_video).and_return(true)
     @video = Factory(:video)
     @attr = { :content => "lorem ipsum yada yada foobar" }
   end
@@ -34,7 +34,7 @@ describe Comment do
   describe "validations" do
 
     it "should have a video id" do
-      comment.new(@attr).should_not be_valid
+      @comment.create(@attr).should_not be_valid
     end
 
     it "should require nonblank content" do
