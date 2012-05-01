@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Relationship do
   describe "basic relationships model" do
     before(:each) do
-      @follower = Factory(:user)
-      @followed = Factory(:user, :email => Factory.next(:email))
+      @follower = FactoryGirl.create(:user)
+      @followed = FactoryGirl.create(:user)
 
       @attr = { :followed_id => @followed.id }
     end

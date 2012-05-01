@@ -15,10 +15,10 @@ describe Video do
   it { should be_valid }
   
   before(:each) do
-    @album = Factory(:album)
+    @album = FactoryGirl.create(:album)
     @attr = { :embed_code => "g0YzBnMjoGiHUtGoWW4pFzzhTZpKLZUi", :title => "lorem", :description => "lorem ipsum yada yada", :image_url => "www.exaple.com/pic.jpeg" }
     @asset = mock_model('Asset')
-    @asset.stub!(:upload_video).and_return(true)
+    Asset.stub!(:upload_video).and_return(true)
   end
 
   it "should create a new instance with valid attributes" do

@@ -1,14 +1,8 @@
-Factory.define :user do |user|
-  user.name  "Some One"
-  user.email "Somel@example.com"
-end
-
-Factory.sequence :email do |n|
-  "person-#{n}@example.com"
-end
-
-Factory.sequence :name do |n|
-  "Person #{n}"
+FactoryGirl.define do
+  factory :user do
+    sequence(:name)  { |n| "Person #{n}" }
+    sequence(:email) { |n| "person_#{n}@example.com"}   
+  end
 end
 
 Factory.define :album do |album|

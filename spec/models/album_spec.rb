@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Album do
 
   before(:each) do
-    @user = Factory(:user)
+    @user = FactoryGirl.create(:user)
     @attr = { :title => "lorem ipsum", :description => "lorem ipsum yada yada" }
     @label = mock_model('Label')
     @label.stub!(:create_label).and_return(true)

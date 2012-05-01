@@ -19,12 +19,12 @@ group :assets do
 end
 
 group :test do
-  gem 'factory_girl_rails', '1.7.0'
+  gem 'factory_girl_rails', '3.1.0'
   gem 'fakeweb',            '1.3.0'
 end
 
 group :development, :test do
-  gem 'sqlite3',      '1.3.5'
+  gem 'sqlite3',      '1.3.6'
   gem 'rspec-rails',  '2.9.0'
 end
 
