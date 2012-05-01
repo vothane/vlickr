@@ -22,13 +22,14 @@ describe Video do
   end
 
   it "should create a new instance with valid attributes" do
-    Asset.should_receive(:upload_video).and_return(true)
+    Asset.stub!(:upload_video).and_return(true)
     @album.videos.create!(@attr)
   end
 
   describe "album associations" do
 
     before(:each) do
+      Asset.stub!(:upload_video).and_return(true)
       @video = @album.videos.create(@attr)
     end
 
@@ -68,6 +69,7 @@ describe Video do
   describe "acts_as_voodoo integration" do
 
     it "should send a create call when created" do
+      Asset.stub!(:upload_video).and_return(true)
       @album.videos.create(@attr)
     end
   end
