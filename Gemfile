@@ -10,6 +10,8 @@ gem 'eventmachine',    '1.0.0.beta.4'
 
 gem 'em-http-request', '1.0.2'
 
+gem 'rest-client',     '1.6.7'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
