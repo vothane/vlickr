@@ -34,7 +34,7 @@ describe Comment do
   describe "validations" do
 
     it "should have a video id" do
-      comment.new(@attr).should_not be_valid
+      @comment.new(@attr).should_not be_valid
     end
 
     it "should require nonblank content" do
