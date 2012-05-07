@@ -91,20 +91,20 @@ describe User do
 
     before { user.follow!(other_user) }
 
-    let(:own_post)        { user.comments.create!(:content => "lorem ipsum whatever") }
-    let(:followed_post)   { other_user.comments.create!(:content => "lorem ipsum @#$$") }
-    let(:unfollowed_post) { third_user.comments.create!(:content => "fkdtjdtuh rr") }
+    let(:own_album)        { user.albums.create!(:title => "lorem ipsum1", :description => "lorem1 ipsum yada yada") }
+    let(:followed_album)   { other_user.albums.create!(:title => "lorem ipsum2", :description => "lorem2 ipsum yada yada") }
+    let(:unfollowed_album) { third_user.albums.create!(:title => "lorem ipsum3", :description => "lorem3 ipsum yada yada") }
 
-    subject { comment.from_users_followed_by(user) }
+    subject { albums.from_users_followed_by(user) }
 
-    it { should include(own_post) }
-    it { should include(followed_post) }
-    it { should_not include(unfollowed_post) }
+    it { should include(own_album) }
+    it { should include(followed_album) }
+    it { should_not include(unfollowed_album) }
   end
 
   describe "following" do
     let(:user) { FactoryGirl.create(:user) }
-    let(:other_user) { FactoryGirl.create(:user) }
+    let(:other_user) { User.create!( :name => "Cozmo Politan", :email => "fasfer@example.com" ) }
     before do
       user.save
       user.follow!(other_user)

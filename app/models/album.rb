@@ -3,11 +3,11 @@ class Album < ActiveRecord::Base
 
   belongs_to :user
   has_many   :videos
-  
-  validates :title, :presence => true,
-                    :length   => { :maximum => 50 }
-  
-  validates :description, :presence   => true
+
+  validates :user_id,     :presence => true
+  validates :title,       :presence => true,
+                          :length   => { :maximum => 50 } 
+  validates :description, :presence => true
                     
   after_create :create_ooyala_label
   

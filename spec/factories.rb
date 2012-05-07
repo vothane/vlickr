@@ -15,7 +15,7 @@ FactoryGirl.define do
   factory :album do
     title       "Lorem Al"
     description "Lorem Something Something?"
-    association :user
+    user
   end
 
  factory :video do 
@@ -25,11 +25,11 @@ FactoryGirl.define do
     image_url   "www.example.com/example.png" 
     file        "c:/example.mov" 
     size        "100000"  
-    association :album
+    album
   end
 
   factory :comment do
     content     "Lorem Something Something?"
-    association :video
+    video
   end
 end
