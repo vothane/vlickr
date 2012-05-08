@@ -2,6 +2,21 @@ require 'spec_helper'
 
 describe Comment do
 
+  let(:video) { FactoryGirl.create(:video) }
+  before do 
+    @asset = mock_model('Video')
+    Asset.stub!(:upload_video).and_return(true)
+    @comment = video.comments.build(content: "Lorem ipsum") 
+  end
+  subject     { @comment }
+
+  it { should respond_to(:content) }
+  it { should respond_to(:video_id) }
+  it { should respond_to(:video) }
+  its(:video) { should == video }
+
+  it { should be_valid }
+
   before(:each) do
     @asset = mock_model('Asset')
     Asset.stub!(:upload_video).and_return(true)
