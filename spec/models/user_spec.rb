@@ -94,8 +94,8 @@ describe User do
     let(:own_album)        { user.albums.create!(:title => "lorem ipsum1", :description => "lorem1 ipsum yada yada") }
     let(:followed_album)   { other_user.albums.create!(:title => "lorem ipsum2", :description => "lorem2 ipsum yada yada") }
     let(:unfollowed_album) { third_user.albums.create!(:title => "lorem ipsum3", :description => "lorem3 ipsum yada yada") }
-
-    subject { albums.from_users_followed_by(user) }
+    let(:albums)           { user.albums}
+    subject { albums }
 
     it { should include(own_album) }
     it { should include(followed_album) }
@@ -104,7 +104,7 @@ describe User do
 
   describe "following" do
     let(:user) { FactoryGirl.create(:user) }
-    let(:other_user) { User.create!( :name => "Cozmo Politan", :email => "fasfer@example.com" ) }
+    let(:other_user) { User.create( :name => "Cozmo Politan", :email => "fasfer@example.com" ) }
     before do
       user.save
       user.follow!(other_user)

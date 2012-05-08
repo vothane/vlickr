@@ -3,7 +3,10 @@ require 'spec_helper'
 describe Video do
 
   let(:album) { FactoryGirl.create(:album) }
-  before { @video = album.videos.build( :embed_code => "g0YzBnMjoGiHUtGoWW4pFzzhTZpKLZUi", :title => "lorem", :description => "lorem ipsum yada yada", :image_url => "www.exaple.com/pic.jpeg" ) } 
+  before do 
+    Asset.stub!(:upload_video).and_return(true)
+    @video = album.videos.build( :embed_code => "g0YzBnMjoGiHUtGoWW4pFzzhTZpKLZUi", :title => "lorem", :description => "lorem ipsum yada yada", :image_url => "www.exaple.com/pic.jpeg" )
+  end
   subject { @video }
 
   it { should respond_to(:title) }
@@ -14,6 +17,7 @@ describe Video do
   it { should be_valid }
   
   before(:each) do
+    Label.stub!(:create_label).and_return(true)
     @album = FactoryGirl.create(:album)
     @attr = { :embed_code => "g0YzBnMjoGiHUtGoWW4pFzzhTZpKLZUi", :title => "lorem", :description => "lorem ipsum yada yada", :image_url => "www.exaple.com/pic.jpeg" }
     @asset = mock_model('Asset')
@@ -86,7 +90,7 @@ describe Video do
   describe "accessible attributes" do
     it "should not allow access to album_id" do
       expect do
-        album.videos.new(:album_id => album.id)
+        Video.new(:album_id => album.id)
       end.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
     end    
   end
