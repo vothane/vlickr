@@ -2,6 +2,22 @@ require 'spec_helper'
 
 describe Album do
 
+  let(:user) { FactoryGirl.create(:user) }
+  before do 
+    @label = mock_model('Label')
+    Label.stub!(:create_label).and_return(true)
+    @album = user.albums.build(:title => "lorem ipsum and some", :description => "lorem yada yada") 
+  end
+  subject { @album }
+
+  it { should respond_to(:title) }
+  it { should respond_to(:description) }
+  it { should respond_to(:user_id) }
+  it { should respond_to(:user) }
+  its(:user) { should == user }
+
+  it { should be_valid }
+
   before(:each) do
     @user = FactoryGirl.create(:user)
     @attr = { :title => "lorem ipsum", :description => "lorem ipsum yada yada" }
