@@ -69,27 +69,27 @@ def get_images
   images = {};
   images[1] = {
     id: 1,
-    url: "/images/islands.jpeg",
-    name: "Some island",
-    description: "Some islands at sunset"
+    url: "http://ak.c.ooyala.com/84d2hxMzoDdGIIc1aciS20lsB3OMox0S/LHp2csp3BVpxnnKX5hMDoxOm1xO-1jSC",
+    name: "The Force Volkswagen Commercial",
+    description: "Darth Vader's iconic status has made the character a synonym for evil in popular culture."
   }
   images[2] = {
     id: 2,
-    url: "/images/mountain.jpeg",
-    name: "A mountain",
-    description: "A mountain with a grassy hill and tree in front of it"
+    url: "http://ak.c.ooyala.com/dxZGdxMzomq2HVFWgXFDXnQ7hx5NpxJY/8Ru54IivvK7EGW8H5hMDoxOmdjOz0ndz",
+    name: "Transformers 3 Dark of the Moon",
+    description: "Cybertronian spacecraft carrying an invention capable of ending the war between the philanthropic Autobots and the malevolent Decepticons."
   }
   images[3] = {
     id: 3,
-    url: "/images/wrench.jpeg",
-    name: "A rusty wrench",
-    description: "A close up view of a rusty wrence, with great color and texture on it"
+    url: "http://ak.c.ooyala.com/U3NmdxMzrJe_3B_8VLs1ZlrlIJfSID-9/2c0YxGwJFvMxVXlX5hMDoxOmFkO7UOTK",
+    name: "Iron Sky",
+    description: "Nazi's on the Moon."
   }
   images[4] = {
     id: 4,
-    url: "/images/flower.jpeg",
-    name: "A purple flower",
-    description: "A purple flower with a water drop hanging off another plant"
+    url: "http://ak.c.ooyala.com/o1NmdxMzrrWwbOVk_wIqhw-AmhlOMO49/j14TFkN_kLvndon35hMDoxOmFkO7UOTK",
+    name: "Avengers",
+    description: "Yeah, you know."
   }
  
   set :images, images
