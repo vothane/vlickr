@@ -74,7 +74,6 @@ def get_images
   videos = Asset.find(:all) do |vid|
              vid.duration > 0
            end
-  binding.pry
   videos.each_with_index do |video, index|
       
     images[index] = {

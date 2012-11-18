@@ -1,0 +1,7 @@
+require 'rubygems'
+require 'active_resource'
+require 'active_support'
+require 'acts_as_voodoo/acts_as_voodoo'
+require 'acts_as_voodoo/query'
+require 'acts_as_voodoo/ooyala'
+require 'acts_as_voodoo/helper'
