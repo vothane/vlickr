@@ -1,7 +1,10 @@
 require 'sinatra'
 require 'erb'
 require 'json'
+require 'pry'
 require 'sinatra/reloader' if development?
+
+require_relative 'models/asset.rb'
 
 get '/' do
   # app homepage
@@ -67,30 +70,21 @@ def get_images
   return settings.images if settings.respond_to?(:images)
 
   images = {};
-  images[1] = {
-    id: 1,
-    url: "http://ak.c.ooyala.com/84d2hxMzoDdGIIc1aciS20lsB3OMox0S/LHp2csp3BVpxnnKX5hMDoxOm1xO-1jSC",
-    name: "The Force Volkswagen Commercial",
-    description: "Darth Vader's iconic status has made the character a synonym for evil in popular culture."
-  }
-  images[2] = {
-    id: 2,
-    url: "http://ak.c.ooyala.com/dxZGdxMzomq2HVFWgXFDXnQ7hx5NpxJY/8Ru54IivvK7EGW8H5hMDoxOmdjOz0ndz",
-    name: "Transformers 3 Dark of the Moon",
-    description: "Cybertronian spacecraft carrying an invention capable of ending the war between the philanthropic Autobots and the malevolent Decepticons."
-  }
-  images[3] = {
-    id: 3,
-    url: "http://ak.c.ooyala.com/U3NmdxMzrJe_3B_8VLs1ZlrlIJfSID-9/2c0YxGwJFvMxVXlX5hMDoxOmFkO7UOTK",
-    name: "Iron Sky",
-    description: "Nazi's on the Moon."
-  }
-  images[4] = {
-    id: 4,
-    url: "http://ak.c.ooyala.com/o1NmdxMzrrWwbOVk_wIqhw-AmhlOMO49/j14TFkN_kLvndon35hMDoxOmFkO7UOTK",
-    name: "Avengers",
-    description: "Yeah, you know."
-  }
+
+  videos = Asset.find(:all) do |vid|
+             vid.duration > 0
+           end
+  binding.pry
+  videos.each_with_index do |video, index|
+      
+    images[index] = {
+      id: index,
+      url: video.preview_image_url,
+      name: video.name,
+      description: video.description
+    }
+
+  end
  
   set :images, images
   return images
