@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.beta1'
 gem 'puma'
+gem 'activeresource', '4.0.0.beta1'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -35,11 +36,15 @@ gem 'jbuilder', '~> 1.0.1'
 
 # To use debugger
 # gem 'debugger'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'jasmine', :git => 'git://github.com/pivotal/jasmine-gem.git'
   gem 'pry'
+  gem 'awesome_print'
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :test do
