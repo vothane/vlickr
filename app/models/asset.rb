@@ -1,8 +1,11 @@
+require 'active_resource'
+require 'concerns/acts_as_voodoo'
+
 class Asset < ActiveResource::Base
-   my_api_key    = 'JkN2w61tDmKgPl4y395Rp1vAdlcq.IqBgb'
-   my_api_secret = 'nU2WjeYoEY0MJKtK1DRpp1c6hNRoHgwpNG76dJkX'
+  my_api_key    = 'JkN2w61tDmKgPl4y395Rp1vAdlcq.IqBgb'
+  my_api_secret = 'nU2WjeYoEY0MJKtK1DRpp1c6hNRoHgwpNG76dJkX'
 
-   acts_as_voodoo :api_key => my_api_key, :api_secret => my_api_secret
+  acts_as_voodoo :api_key => my_api_key, :api_secret => my_api_secret
 
-   self.site = "https://api.ooyala.com/v2"
+  self.site = "https://api.ooyala.com/v2"
 end

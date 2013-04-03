@@ -12,12 +12,16 @@ describe Video do
 
     let(:video) do
       video = Video.new
-      video.video = asset_video
+      video.asset = asset_video
       video
     end  
 
     it "should be valid" do
-      video.should be_valid
+      video.name.should == "Thor"
     end  
+
+    it "should be an instance of AsyncConnection" do
+      video.stream_urls.should be_instance_of( Array )
+    end
   end  
 end
