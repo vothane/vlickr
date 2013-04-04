@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Video do
 
@@ -35,13 +35,22 @@ describe Video do
 
   end 
 
-  context 'when destroying video instance' do
+  context "when destroying video instance" do
 
-    it 'should call asset destroy method in before_destroy callback' do
+    it "should call asset destroy method in before_destroy callback" do
       asset_video.should_receive( :destroy )
 
       video.destroy
     end
 
   end  
+
+  context "when using scope querys" do
+
+    it "should find recent videos" do
+      Video.recent.first.count.should == 1
+    end
+
+  end  
+
 end

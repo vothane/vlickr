@@ -1,9 +1,9 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe User do
 
   let(:user) do
-    User.new(name: "John Ghey", email: "John.Ghey@mental_asylum.com", user_name: "The_Fraud")
+    User.new(name: "John Ghey", email: "John.Ghey@asylum.com", user_name: "The_Fraud")
   end
 
   subject { user }
@@ -15,12 +15,13 @@ describe User do
   it { should be_valid }
 
 
-  context 'callbacks' do
-    describe '#save_user!' do
-      it 'downcases email' do
+  context "callbacks" do
+    describe "#save_user!" do
+      it "downcases email" do
         user.email.should_receive( :downcase )
-        user.email = "John.Ghey@Nut_House.com"
+        user.email = "John.Ghey@NutHouse.com"
         user.save
+        user.email.should == "john.ghey@nuthouse.com"
       end
     end
   end
