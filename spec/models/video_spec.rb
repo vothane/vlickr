@@ -17,11 +17,11 @@ describe Video do
     end  
 
     it "should be valid" do
-      video.name.should == "Thor"
+      video.should be_valid
     end  
 
-    it "should be an instance of AsyncConnection" do
-      video.stream_urls.should be_instance_of( Array )
-    end
+    it "should be valid name" do
+      video.name.should == "Thor"
+    end  
   end  
 end

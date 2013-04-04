@@ -1,5 +1,9 @@
 class Video < ActiveRecord::Base 
-  attr_accessor :asset
+  serialize :asset
+  
+  before_destroy Proc.new { |video| video.asset.destroy }
 
-  delegate :name, :embed_code, :desription, :duration, :stream_urls, :to => :asset
+  validates :asset, :presence => true  
+
+  delegate :name, :embed_code, :desription, :duration, :status, :to => :asset
 end
