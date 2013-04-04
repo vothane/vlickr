@@ -1,4 +1,9 @@
 Vlickr::Application.routes.draw do
+  get "videos_controller/index"
+  get "videos_controller/create"
+  get "videos_controller/destroy"
+  get "videos_controller/edit"
+  get "videos_controller/update"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
