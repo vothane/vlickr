@@ -40,6 +40,7 @@ gem 'jbuilder', '~> 1.0.1'
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
   gem 'spork'
   gem 'jasmine', :git => 'git://github.com/pivotal/jasmine-gem.git'
   gem 'pry'
@@ -49,7 +50,6 @@ group :development, :test do
 end
 
 group :test do
-  gem "factory_girl_rails"
   gem 'database_cleaner'
   gem 'vcr'
 end
