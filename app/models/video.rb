@@ -1,5 +1,7 @@
 class Video < ActiveRecord::Base 
-  serialize :asset
+  serialize :asset, Asset
+
+  belongs_to :album
   
   before_destroy Proc.new { |video| video.asset.destroy }
 

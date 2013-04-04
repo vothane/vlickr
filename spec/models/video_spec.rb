@@ -16,11 +16,18 @@ describe Video do
     video
   end  
 
-  context "when creating a new video" do
+  subject { video }
 
-    it "should be valid" do
-      video.should be_valid
-    end  
+  it { should respond_to(:name) }
+  it { should respond_to(:embed_code) }
+  it { should respond_to(:description) }
+  it { should respond_to(:embed_code) }
+  it { should respond_to(:duration) }
+  it { should respond_to(:status) }
+
+  it { should be_valid }
+
+  context "when creating a new video" do
 
     it "should be valid name" do
       video.name.should == "Thor"

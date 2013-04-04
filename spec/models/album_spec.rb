@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe Album do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  let(:album) do
+    album = Album.new
+    album
+  end  
+  
+  it { should be_valid }
 end
