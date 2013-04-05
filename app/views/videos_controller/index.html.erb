@@ -1,2 +1,20 @@
-<h1>VideosController#index</h1>
-<p>Find me in app/views/videos_controller/index.html.erb</p>
+<div class='span-24 last'>
+  <% @videos.each do |video| %>
+    <div class='span-2'>
+      <%= image_tag( "#{video.preview_image_url}", :class => 'span-2' ) %>
+    </div>
+    <div class='span-20 last'>
+      <h2 style='margin-bottom: 0;'></h2>
+      <h4></h4>
+    </div>
+  <% end %>
+</div>
+<hr class='space' />
+<div class='span-24 last'>
+  <h2 style='margin-bottom: 0;'>Your recent videos</h2>
+  <h3>Some of your latest uploads</h3>
+  implement later
+  <h2 style='margin-bottom: 0;'>People you follow</h2>
+  <h3>Videos shared by people you follow</h3>
+  implement later
+</div>

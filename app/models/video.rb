@@ -9,5 +9,5 @@ class Video < ActiveRecord::Base
 
   validates :asset, :presence => true  
 
-  delegate :name, :embed_code, :description, :duration, :status, :to => :asset
+  delegate :name, :embed_code, :description, :duration, :status, :preview_image_url :to => :asset
 end
