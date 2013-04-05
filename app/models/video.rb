@@ -1,8 +1,9 @@
 class Video < ActiveRecord::Base 
   serialize :asset, Asset
-
+ 
   belongs_to :album
-
+  has_many :comments, dependent: :destroy
+  
   scope :recent, -> { order('created_at desc').limit(4) }
   
   before_destroy Proc.new { |video| video.asset.destroy }
