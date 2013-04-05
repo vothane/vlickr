@@ -11,7 +11,7 @@ describe Comment do
   end  
 
   before do
-    @comment = comment.new(content: "Lorem ipsum and sum", video_id: 2)
+    @comment = Comment.new(content: "Lorem ipsum and sum", video_id: 2)
   end
   
   subject { @comment }
@@ -23,7 +23,7 @@ describe Comment do
     before { @comment.video_id = nil }
     it { should_not be_valid }
   end
-  
+
   describe "when video_id is not present" do
     before { @comment.video_id = nil }
     it { should_not be_valid }
