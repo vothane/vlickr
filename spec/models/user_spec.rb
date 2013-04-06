@@ -11,6 +11,9 @@ describe User do
   it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:user_name) }
+  it { should respond_to(:password_digest) }
+  it { should respond_to(:password) }
+  it { should respond_to(:password_confirmation) }
 
   it { should be_valid }
 
@@ -18,7 +21,7 @@ describe User do
   context "callbacks" do
     describe "#save_user!" do
       it "downcases email" do
-        user.email.should_receive( :downcase )
+        user.email.should_receive( :downcase! )
         user.email = "John.Ghey@NutHouse.com"
         user.save
         user.email.should == "john.ghey@nuthouse.com"

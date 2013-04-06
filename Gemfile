@@ -27,7 +27,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.0.1'
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -46,8 +46,8 @@ group :development, :test do
   gem 'jasmine', :git => 'git://github.com/pivotal/jasmine-gem.git'
   gem 'pry'
   gem 'awesome_print'
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
