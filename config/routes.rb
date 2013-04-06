@@ -1,4 +1,5 @@
 Vlickr::Application.routes.draw do
+  get "users/new"
   get "landing_pages/home"
   get "landing_pages/help"
   get "videos_controller/index"
