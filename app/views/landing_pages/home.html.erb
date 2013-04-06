@@ -1,20 +1,20 @@
 
-<% if signed_in? %>
+<% if true #signed_in? %>
   <div class="row">
     <aside class="span4">
       <section>
-        <%= render 'shared/user_info' %>
+        <%#= render 'shared/user_info' %>
       </section>
       <section>
-        <%= render 'shared/stats' %>
+        <%#= render 'shared/stats' %>
       </section>
       <section>
-        <%= render 'shared/comments_form' %>
+        <%#= render 'shared/comments_form' %>
       </section>
     </aside>
     <div class="span8">
       <h3>Comment Feed</h3>
-      <%= render 'shared/feed' %>
+      <%#= render 'shared/feed' %>
     </div>
   </div>  
 <% else %>
