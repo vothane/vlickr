@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  attr_accessible :name, :email, :password, :password_confirmation
+
   has_many :albums, dependent: :destroy
 
   before_save Proc.new { |user| user.email.downcase! }
