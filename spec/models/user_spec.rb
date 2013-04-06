@@ -18,7 +18,7 @@ describe User do
   context "callbacks" do
     describe "#save_user!" do
       it "downcases email" do
-        user.email.should_receive( :downcase )
+        user.email.should_receive( :downcase! )
         user.email = "John.Ghey@NutHouse.com"
         user.save
         user.email.should == "john.ghey@nuthouse.com"
