@@ -1,4 +1,6 @@
 Vlickr::Application.routes.draw do
+  get "landing_pages/home"
+  get "landing_pages/help"
   get "videos_controller/index"
   get "videos_controller/create"
   get "videos_controller/destroy"
