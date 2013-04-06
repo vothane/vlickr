@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Vlickr</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-  <div class='container'>
-    <%= yield %>
-    <hr class='space' />
-    <div class='span-24 last'>
-      <div class='small span-5 prepend-19'>
-        copyright &copy
-        <a href='http://www.github.com/vothane'>Thane Vo</a>
-        2013
-      </div>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>  
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/shim' %>
+  </head>
+  <body>
+    <%= render 'layouts/header' %>
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development? %>
     </div>
-  </div>
-
-</body>
+  </body>
 </html>
