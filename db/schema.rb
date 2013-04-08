@@ -43,8 +43,6 @@ ActiveRecord::Schema.define(version: 20130408215501) do
     t.text     "player"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-
   create_table "videos", force: true do |t|
     t.string   "title"
     t.string   "caption"
