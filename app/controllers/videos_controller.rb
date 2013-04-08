@@ -3,6 +3,9 @@ class VideosController < ApplicationController
   end
 
   def show
+    user = User.find(:id)
+    @player_id = user.player_id
+    @video = Video.find(:id)
   end
 
   def create
