@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe VideosControllerController do
+describe VideosController do
 
   describe "GET 'index'" do
     it "returns http success" do
@@ -9,16 +9,16 @@ describe VideosControllerController do
     end
   end
 
-  describe "GET 'create'" do
+  describe "GET 'show'" do
     it "returns http success" do
-      get 'create'
+      get 'show'
       response.should be_success
     end
   end
 
-  describe "GET 'destroy'" do
+  describe "GET 'create'" do
     it "returns http success" do
-      get 'destroy'
+      get 'create'
       response.should be_success
     end
   end
@@ -33,6 +33,13 @@ describe VideosControllerController do
   describe "GET 'update'" do
     it "returns http success" do
       get 'update'
+      response.should be_success
+    end
+  end
+
+  describe "GET 'destroy'" do
+    it "returns http success" do
+      get 'destroy'
       response.should be_success
     end
   end

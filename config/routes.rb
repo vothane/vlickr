@@ -1,4 +1,10 @@
 Vlickr::Application.routes.draw do
+  get "videos/index"
+  get "videos/show"
+  get "videos/create"
+  get "videos/edit"
+  get "videos/update"
+  get "videos/destroy"
   root to: "landing_pages#home"
 
   get "users/new"

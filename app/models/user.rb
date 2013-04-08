@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   before_save Proc.new { |user| user.email.downcase! }
   after_create :create_player
+  before_destroy Proc.new { |player| player.video.destroy }
 
   validates :name,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i  
