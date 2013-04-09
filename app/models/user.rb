@@ -1,7 +1,9 @@
+require "copy"
+
 class User < ActiveRecord::Base 
   serialize :player, Player
 
-  has_many :albums, dependent: :destroy
+  has_many :albums, dependent: :destroy, :extend => Copy
 
   before_save Proc.new { |user| user.email.downcase! }
   after_create :create_player
@@ -23,4 +25,5 @@ class User < ActiveRecord::Base
     player.name = "player for #{user_name}"
     self.player = player
   end   
+
 end

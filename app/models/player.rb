@@ -12,4 +12,13 @@ class Player < ActiveResource::Base
   def player_code
     return id
   end  
+
+  def default_player
+    players = Player.find(:all)
+    players.each do |player|
+      if player.name == "Default player"
+        return player
+      end
+    end
+  end  
 end
