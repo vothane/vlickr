@@ -2,6 +2,8 @@ require 'active_resource'
 require 'concerns/acts_as_voodoo'
 
 class Player < ActiveResource::Base
+  DEFAULT_PLAYER = "Default player"
+
   my_api_key    = 'JkN2w61tDmKgPl4y395Rp1vAdlcq.IqBgb'
   my_api_secret = 'nU2WjeYoEY0MJKtK1DRpp1c6hNRoHgwpNG76dJkX'
 
@@ -16,7 +18,7 @@ class Player < ActiveResource::Base
   def default_player
     players = Player.find(:all)
     players.each do |player|
-      if player.name == "Default player"
+      if player.name == DEFAULT_PLAYER
         return player
       end
     end
