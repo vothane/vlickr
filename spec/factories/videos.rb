@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :video do
-    title "MyTiltle"
-    user_id 1
+    sequence(:title) { |n| "title #{n}" }
+    association :user, :factory => :user
   end
 end
