@@ -6,6 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+def random_string
+  SecureRandom.hex(3)
+end
+
+hipster = User.create(name: "Mac User",   email: "user_#{random_string}@apple.com",     user_name: "Hipster")
+nerd    = User.create(name: "Linux User", email: "user_#{random_string}@ubuntu.com",    user_name: "Nerd")
+fool    = User.create(name: "Win User",   email: "user_#{random_string}@microsoft.com", user_name: "Pity_The_Fool")
+
 assets = [
   Asset.find(:one) { |vid| vid.name == "RailsCast - ActiveRecord Relation walkthrough" },
   Asset.find(:one) { |vid| vid.name == "RailsCast - CoffeeScript" },
@@ -21,11 +29,9 @@ assets = [
   Asset.find(:one) { |vid| vid.name == "Wrath of the Titans" },
 ]
 
-assets.each do |asset|
+assets.each_with_index do |asset, index|
   asset = asset.first
-  Video.find_or_initialize_by(:title => asset.name).tap do |video|
-    video.title = asset.name
-    video.asset = asset
-    video.save!
-  end  
+  hipster.videos.create(:title => asset.name, :asset => asset) if index % 3 == 0
+  nerd.videos.create(:title => asset.name, :asset => asset) if index % 3 == 1
+  fool.videos.create(:title => asset.name, :asset => asset) if index % 3 == 2
 end  

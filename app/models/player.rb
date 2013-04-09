@@ -15,7 +15,7 @@ class Player < ActiveResource::Base
     return id
   end  
 
-  def default_player
+  def self.default_player
     players = Player.find(:all)
     players.each do |player|
       if player.name == DEFAULT_PLAYER

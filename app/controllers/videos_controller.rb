@@ -1,11 +1,17 @@
 class VideosController < ApplicationController
+
+  before_action :get_user
+
+  def get_user
+    @user = User.find(:user_id)
+  end
+    
   def index
   end
 
   def show
-    #user = User.find(:id)
-    @player_id = "NDY2MTE5OTY2NjMwMDVkOTExNTU4ZDAz"#user.player_id
-    @video = (Video.all).first
+    @player_id = @user.player_id
+    @video     = Video.find(:id)
   end
 
   def create

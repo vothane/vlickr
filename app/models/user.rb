@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   serialize :player, Player
 
   has_many :albums, dependent: :destroy, :extend => Copy
+  has_many :videos, dependent: :destroy, :autosave => true
 
   before_save Proc.new { |user| user.email.downcase! }
   after_create :create_player
