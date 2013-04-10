@@ -4,13 +4,6 @@ Vlickr::Application.routes.draw do
   resources :users do
     resources :videos
   end
-  
-  get "videos/index"
-  get "videos/show"
-  get "videos/create"
-  get "videos/edit"
-  get "videos/update"
-  get "videos/destroy"
 
   get "users/new"
   get "landing_pages/home"
