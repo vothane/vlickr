@@ -34,3 +34,4 @@ _yardoc
 doc/
 
 .idea
+/config/config.yml
