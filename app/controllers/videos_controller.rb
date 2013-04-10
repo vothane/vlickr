@@ -3,15 +3,15 @@ class VideosController < ApplicationController
   before_action :get_user
 
   def get_user
-    @user = User.find(:user_id)
+    @user = User.find(params[:user_id].to_i)
   end
     
   def index
   end
 
   def show
-    @player_id = @user.player_id
-    @video     = Video.find(:id)
+    @player_id = Player.default_player.player_code
+    @video     = Video.find(params[:id].to_i)
   end
 
   def create

@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :videos, dependent: :destroy, :autosave => true
 
   before_save Proc.new { |user| user.email.downcase! }
-  after_create :create_player
+  before_create :create_player
   before_destroy Proc.new { |player| player.video.destroy }
 
   validates :name,  presence: true, length: { maximum: 50 }
@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
   validates :player, :presence => true  
 
-  delegate :player_id, :to => :player    
+  delegate :player_code, :to => :player    
 
   private
 
