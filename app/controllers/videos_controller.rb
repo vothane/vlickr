@@ -10,9 +10,9 @@ class VideosController < ApplicationController
   end
 
   def show
-    params.permit(:user_id, :id)
+    show_params = params.permit(:id)
     @player_id = Player.default_player.player_code
-    @video     = Video.find(params[:id].to_i)
+    @video     = Video.find(show_params.to_i)
   end
 
   def create
