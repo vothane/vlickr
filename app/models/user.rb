@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
 
   validates :player, :presence => true  
   
+  has_secure_password
+  validates :password_confirmation, presence: true
+  validates :password, length: { minimum: 6 }
+  
   delegate :player_code, :to => :player  
 
 end
