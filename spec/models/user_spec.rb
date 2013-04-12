@@ -3,7 +3,8 @@ require "spec_helper"
 describe User do
 
   let(:user) do
-    User.new(name: "John Ghay", email: "John.Ghay@asylum.com", user_name: "The_Fraud")
+    User.new(name: "John Ghay", email: "John.Ghay@asylum.com", user_name: "The_Fraud",
+             password: "SpreadingTheDiseaseOfFailure", password_confirmation: "SpreadingTheDiseaseOfFailure")
   end
 
   subject { user }
@@ -15,7 +16,7 @@ describe User do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
-  it { should respond_to(:player_id) }
+  it { should respond_to(:player_code) }
 
   it { should be_valid }
 
@@ -23,7 +24,7 @@ describe User do
   context "callbacks" do
     describe "#save_user!" do
       it "downcases email" do
-        user.email.should_receive(:downcase!)
+        user.email.should_receive(:downcase!).and_return("john.ghay@nuthouse.com")
         user.email = "John.Ghay@NutHouse.com"
         user.save
         user.email.should == "john.ghay@nuthouse.com"
@@ -53,7 +54,8 @@ describe User do
   context "video associations" do
 
     before do
-      @user = User.new(name: "Example User", email: "user@example.com", user_name: "user1")
+      @user = User.new(name: "Example User", email: "user@example.com", user_name: "user1",
+                       password: "SpreadingTheDiseaseOfFailure", password_confirmation: "SpreadingTheDiseaseOfFailure")
     end
 
 
