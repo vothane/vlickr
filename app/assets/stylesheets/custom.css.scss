@@ -141,11 +141,6 @@ aside {
   }
 }
 
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
-
 .stats {
   overflow: auto;
   a {
@@ -164,14 +159,6 @@ aside {
   }
   strong {
     display: block;
-  }
-}
-
-.user_avatars {
-  overflow: auto;
-  margin-top: 10px;
-  .gravatar {
-    margin: 1px 1px;
   }
 }
 
@@ -217,9 +204,9 @@ input {
   }
 }
 
-/* microposts */
+/* videos */
 
-.microposts {
+.videos {
   list-style: none;
   margin: 10px 0 0 0;
   
@@ -233,10 +220,6 @@ input {
 }
 .timestamp {
   color: gray;
-}
-.gravatar {
-  float: left;
-  margin-right: 10px;
 }
 aside {
   textarea {

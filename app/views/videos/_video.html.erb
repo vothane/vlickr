@@ -1,0 +1,12 @@
+<li>
+  <span class="content">
+    <%= link_to image_tag("#{video.preview_image_url}", :size => "140x140", :class => "img-polaroid"), user_video_path(:user_id => video.user_id, :id => video.id), :method => :get %>
+  </span>
+  <span class="content"><%= video.description %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(video.created_at) %> ago.
+  </span>
+  <% if video.user %>
+    <%= link_to "delete", video, method: :delete, data: { confirm: "You sure?" }, title: video.name %>
+  <% end %>
+</li>
