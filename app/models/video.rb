@@ -5,7 +5,7 @@ class Video < ActiveRecord::Base
   belongs_to :user
   has_many :comments, dependent: :destroy
   
-  scope :recent, -> { order('created_at desc').limit(4) }
+  scope :recent, -> { order('created_at desc').limit(6) }
   
   before_destroy Proc.new { |video| video.asset.destroy }
 
