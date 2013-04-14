@@ -2,13 +2,15 @@ Vlickr::Application.routes.draw do
   root to: "landing_pages#home"
   
   resources :sessions, only: [:new, :create, :destroy]
-  
+
   resources :users do
     resources :videos
   end
 
+  match '/signup',  to: 'users#new',        via: 'get'
+  match '/signin',  to: 'sessions#new',     via: 'get'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
   
-  match '/signup', to: 'users#new', via: 'get'
   get "landing_pages/home"
   get "landing_pages/help"
   # The priority is based upon order of creation: first created -> highest priority.
