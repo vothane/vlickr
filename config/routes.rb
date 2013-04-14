@@ -1,6 +1,8 @@
 Vlickr::Application.routes.draw do
   root to: "landing_pages#home"
   
+  resources :sessions, only: [:new, :create, :destroy]
+  
   resources :users do
     resources :videos
   end
