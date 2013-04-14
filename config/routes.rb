@@ -5,7 +5,8 @@ Vlickr::Application.routes.draw do
     resources :videos
   end
 
-  get "users/new"
+  
+  match '/signup', to: 'users#new', via: 'get'
   get "landing_pages/home"
   get "landing_pages/help"
   # The priority is based upon order of creation: first created -> highest priority.
