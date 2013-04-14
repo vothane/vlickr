@@ -105,4 +105,29 @@ describe User do
       end
     end
   end
+
+  context "when returning value of authenticate method" do
+
+    before { user.save }
+
+    let(:found_user) { User.find_by(email: user.email) }
+
+    describe "with valid password" do
+      it { should eql(found_user.authenticate(user.password)) }
+    end
+
+    describe "with invalid password" do
+      let(:user_for_invalid_password) { found_user.authenticate("invalid") }
+
+      it { should_not eql(user_for_invalid_password) }
+      specify { expect(user_for_invalid_password).to be_false }
+    end
+  end
+
+  context "when remembering token" do
+
+    before { user.save }
+
+    its(:remember_token) { should_not be_blank }
+  end
 end
