@@ -89,5 +89,4 @@ describe "User UI" do
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
     end
-  end
-end
+  end  
