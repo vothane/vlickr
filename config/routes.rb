@@ -7,6 +7,8 @@ Vlickr::Application.routes.draw do
     resources :videos
   end
 
+  resources :comments, only: [:create, :destroy]
+
   match '/signup',  to: 'users#new',        via: 'get'
   match '/signin',  to: 'sessions#new',     via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
