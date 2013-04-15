@@ -5,7 +5,7 @@ class LandingPagesController < ApplicationController
     @recent_videos = Video.recent
 
     if signed_in?
-      @comment  = current_user.comments.build
+      @comment  = Comment.new
     end
   end
 
