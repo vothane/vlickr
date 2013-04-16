@@ -14,6 +14,8 @@ Vlickr::Application.routes.draw do
       get :following, :followers
     end
   end
+
+  resources :relationships, only: [:create, :destroy]
   
   match '/signup',  to: 'users#new',        via: 'get'
   match '/signin',  to: 'sessions#new',     via: 'get'
