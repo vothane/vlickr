@@ -9,6 +9,12 @@ Vlickr::Application.routes.draw do
 
   resources :comments, only: [:create, :destroy]
 
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  
   match '/signup',  to: 'users#new',        via: 'get'
   match '/signin',  to: 'sessions#new',     via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
