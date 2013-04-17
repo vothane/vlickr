@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130416002100) do
+ActiveRecord::Schema.define(version: 20130417201617) do
 
   create_table "albums", force: true do |t|
     t.string   "name"
@@ -25,12 +25,9 @@ ActiveRecord::Schema.define(version: 20130416002100) do
 
   create_table "comments", force: true do |t|
     t.text     "content"
-    t.integer  "video_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "comments", ["video_id", "created_at"], name: "index_comments_on_video_id_and_created_at"
 
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"
