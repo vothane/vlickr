@@ -7,7 +7,8 @@ Vlickr::Application.routes.draw do
     resources :videos
   end
 
-  resources :comments, only: [:create, :destroy]
+  map.resources :users, :has_many => :comments, only: [:create, :destroy]
+  map.resources :video, :has_many => :comments, only: [:create, :destroy]
 
   resources :users do
     member do
