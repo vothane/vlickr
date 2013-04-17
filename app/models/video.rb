@@ -3,7 +3,7 @@ class Video < ActiveRecord::Base
  
   belongs_to :album
   belongs_to :user, :autosave => true
-  has_many :comments, dependent: :destroy
+  has_many :comments, :as => :commentable
   
   scope :recent, -> { order('created_at desc').limit(6) }
   
