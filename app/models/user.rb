@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   serialize :player, Player
 
   has_many :albums, dependent: :destroy, :extend => Copy
-  has_many :videos, dependent: :destroy, :autosave => true
+  has_many :videos, dependent: :destroy
   has_many :comments, :as => :commentable
   
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy

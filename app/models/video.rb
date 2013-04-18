@@ -2,7 +2,7 @@ class Video < ActiveRecord::Base
   serialize :asset, Asset
  
   belongs_to :album
-  belongs_to :user, :autosave => true
+  belongs_to :user
   has_many :comments, :as => :commentable
   
   scope :recent, -> { order('created_at desc').limit(6) }
