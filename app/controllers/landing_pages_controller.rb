@@ -11,4 +11,5 @@ class LandingPagesController < ApplicationController
 
   def help
   end
+  
 end
