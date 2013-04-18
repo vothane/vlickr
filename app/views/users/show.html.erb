@@ -17,5 +17,12 @@
         <%= render @videos %>
       </ol>
     <% end %>
+    <% if @user.comments.any? %>
+      <h3>comments (<%= @user.comments.count %>)</h3>
+      <ol class="comments">
+        <%= render @comments %>
+      </ol>
+      <%= will_paginate @comments %>
+    <% end %>
   </div>
 </div>

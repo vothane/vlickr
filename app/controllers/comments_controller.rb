@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   def create
     @commentable = find_commentable
-    @comment = @commentable.comments.build(params[:comment])
+    @comment = current_user.comments.build(params[:comment])
 
     if @comment.save
       flash[:success] = "comment created!"
