@@ -172,4 +172,25 @@ describe User do
       its(:followed_users) { should_not include(other_user) }
     end
   end
+
+  context "user activity feed" do
+    let(:unfollowed_post) do
+      FactoryGirl.create(:comment, user: FactoryGirl.create(:user))
+    end
+    let(:followed_user) { FactoryGirl.create(:user) }
+
+    before do
+      @user.follow!(followed_user)
+      3.times { followed_user.comments.create!(content: "Lorem ipsum") }
+    end
+
+    its(:feed) { should include(newer_comment) }
+    its(:feed) { should include(older_comment) }
+    its(:feed) { should_not include(unfollowed_post) }
+    its(:feed) do
+      followed_user.comments.each do |comment|
+        should include(comment)
+      end
+    end
+  end
 end
