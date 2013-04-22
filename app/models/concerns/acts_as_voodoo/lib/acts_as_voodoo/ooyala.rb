@@ -31,36 +31,115 @@ module OOYALA
     end
 
   end
+
+  def self.update_params(*args, asset)
+    params = Parameters.new(*args, asset)
+    return Generic.new( url: params.params_for_update, body: params.body_for_update )
+  end
+
+  def self.create_params(*args, asset)
+    params = Parameters.new(*args, asset)
+    return Generic.new( url: params.params_for_create, body: params.body_for_create )
+  end
+
+  def self.destroy_params(*args, asset)
+    params = Parameters.new(*args, asset)
+    return Generic.new( url: params.params_for_destroy )
+  end
+
+end
+
+class Credentials < OpenStruct
+end
+
+class Generic < OpenStruct
 end
 
 class Parameters
   def initialize(*args, asset)
-    @asset       = asset
-    @scope       = args.slice!(0)
-    @scope       = :all if @scope.instance_of? Integer
-    @options     = args.slice!(0)
-    @path        = "/v2/#{@asset.collection_name}"
-    @path        = "#{@path}/#{@scope}" if @scope.instance_of? String
-    @this_params = { 'api_key' => @asset.api_key, 'expires' => OOYALA::expires }
+    @args  = args
+    @asset = asset
   end
 
   def params_with_block(conditions)
-    @this_params.merge(options) if @options.instance_of? Hash
-    @this_params['where']     = conditions.to_where_conditions
-    @this_params['signature'] = OOYALA::generate_signature( @asset.api_secret, "GET", @path, @this_params, nil )
-    return { :params => @this_params }
+    this_params = self.parametrize_credentials
+    this_params.merge(options) if find_options.instance_of? Hash
+    this_params['where']     = conditions.to_where_conditions
+    this_params['signature'] = OOYALA::generate_signature( @asset.credentials.api_secret, "GET", self.find_path, this_params, nil )
+    return { :params => this_params }
   end
 
   def params_without_block
-    if @options && @options[:from]
-      @this_params['signature'] = OOYALA::generate_signature( @asset.api_secret, "GET", "#{@path}#{@options[:from]}", @this_params)
-      return { :from => "#{@path}#{@options[:from]}", :params => @this_params }
-    elsif @options
-      @this_params['signature'] = OOYALA::generate_signature( @asset.api_secret, "GET", @path, @this_params )
-      return @this_params.merge({:params => @options})
+    this_params = self.parametrize_credentials
+    options     = self.find_options
+    path        = self.find_path
+
+    if options && options[:from]
+      this_params['signature'] = OOYALA::generate_signature( @asset.credentials.api_secret, "GET", "#{path}#{options[:from]}", this_params)
+      return { :from => "#{path}#{options[:from]}", :params => this_params }
+    elsif options
+      this_params['signature'] = OOYALA::generate_signature( @asset.credentials.api_secret, "GET", path, this_params )
+      return this_params.merge({:params => options})
     else
-      @this_params['signature'] = OOYALA::generate_signature( @asset.api_secret, "GET", @path, @this_params )
-      return { :params => @this_params }
+      this_params['signature'] = OOYALA::generate_signature( @asset.credentials.api_secret, "GET", path, this_params )
+      return { :params => this_params }
     end
+  end
+
+  def params_for_update
+    params              = self.parametrize_credentials
+    path                = "/v2/#{@asset.class.collection_name}/#{@asset.id}"
+    params['signature'] = OOYALA::generate_signature( @asset.credentials.api_secret, "PATCH", "#{path}", params, self.body_for_update)
+    "#{path}?#{params.to_query}"
+  end
+
+  def params_for_create
+    params              = self.parametrize_credentials
+    path                = "/v2/#{@asset.class.collection_name}"
+    params['signature'] = OOYALA::generate_signature( @asset.credentials.api_secret, "POST", path, params, self.body_for_create)
+    "#{path}?#{params.to_query}"
+  end
+
+  def params_for_destroy
+    params              = self.parametrize_credentials
+    params['signature'] = OOYALA::generate_signature( @asset.credentials.api_secret, "DELETE", self.element_path, params)
+    "#{self.element_path}?#{params.to_query}"
+  end
+
+  def find_scope
+    scope = @args.slice(0)
+    scope = :all if scope.instance_of? Integer
+    scope
+  end
+
+  def find_path
+    path  = "/v2/#{@asset.collection_name}"
+    scope = self.find_scope
+    path  = "#{path}/#{scope}" if scope.instance_of? String
+    path
+  end
+
+  def find_options
+    @args.slice(1)
+  end
+
+  def body_for_update
+    patch_body = @args.slice(0)
+    patch_hash = ActiveSupport::JSON.decode(patch_body)
+    patch_hash.delete_if { |key, value| ['created_at', 'updated_at', 'embed_code', 'id', 'duration', 'parent_id'].include? key.to_s }
+    body = ActiveSupport::JSON.encode(patch_hash)
+    body
+  end
+
+  def body_for_create
+    @args.slice(0)
+  end
+
+  def element_path
+    @args.slice(0)
+  end
+
+  def parametrize_credentials
+    { 'api_key' => @asset.credentials.api_key, 'expires' => OOYALA::expires }
   end
 end
