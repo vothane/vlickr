@@ -6,7 +6,7 @@ class LandingPagesController < ApplicationController
 
     if signed_in?
       @comment  = Comment.new
-      @feed_items = current_user.feed
+      @feed_items = current_user.comments
     end
   end
 

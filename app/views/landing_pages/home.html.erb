@@ -13,15 +13,21 @@
         </div>
       </section>   
     </aside> 
-    <section>
-      <%= render 'shared/user_info' %>
-    </section>
-    <section>
-      <%= render 'shared/stats' %>
-    </section>
-    <section>
-      <%= render 'shared/comments_form' %>
-    </section>
+    <aside class="span4">
+      <section>
+        <%= render 'shared/user_info' %>
+      </section>
+      <section>
+        <%= render 'shared/stats' %>
+      </section>
+      <section>
+        <%= render 'shared/comments_form' %>
+      </section>
+    </aside>
+    <div class="span8">
+      <h3>Activity Feed</h3>
+      <%= render 'shared/feed' %>
+    </div> 
   </div>  
 <% else %>
   <div class="center hero-unit">
