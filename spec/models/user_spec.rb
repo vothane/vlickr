@@ -66,7 +66,6 @@ describe User do
                        password: "SpreadingTheDiseaseOfFailure", password_confirmation: "SpreadingTheDiseaseOfFailure")
     end
 
-
     before { @user.save }
 
     let(:asset_video_1) do

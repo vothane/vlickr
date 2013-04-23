@@ -5,6 +5,10 @@
 #asset_type
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+ 
+def RandString(num) 
+  SecureRandom.hex(num)
+end
 
 hipster = User.create!(name: "Mac User",     email: "hip@apple.com",     user_name: "Hipster",       password: "password1", password_confirmation: "password1")
 nerd    = User.create!(name: "Linux User",   email: "pro@ubuntu.com",    user_name: "Nerd",          password: "password2", password_confirmation: "password2")
@@ -37,3 +41,18 @@ hipster.follow!(bro)
 nerd.follow!(bro)
 nerd.follow!(fool)
 fool.follow!(bro)
+
+(1..40).each do |n|
+  comment = Comment.create(:content => "Comment #{n} #{RandString(6)}")
+  mod = n % 4
+  case mod
+    when 0
+      comment.update_attribute(:commentable, hipster)
+    when 1 
+      comment.update_attribute(:commentable, nerd)
+    when 2 
+      comment.update_attribute(:commentable, fool)
+    else
+      comment.update_attribute(:commentable, bro)
+  end
+end  
