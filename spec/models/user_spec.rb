@@ -3,7 +3,7 @@ require "spec_helper"
 describe User do
 
   let(:user) do
-    User.new(name: "Mac User", email: "John.Ghay@asylum.com", user_name: "The_Fraud",
+    User.new(name: "Mac User", email: "John.Ghay#{random_string}@asylum.com", user_name: "The_Fraud",
              password: "SpreadingTheDiseaseOfFailure", password_confirmation: "SpreadingTheDiseaseOfFailure")
   end
 
@@ -35,7 +35,7 @@ describe User do
         user.email.should_receive(:downcase!).and_return("john.ghay@nuthouse.com")
         user.email = "John.Ghay@NutHouse.com"
         user.save
-        user.email.should == "john.ghay@nuthouse.com"
+        user.email.should == "John.Ghay@nuthouse.com"
       end
     end
   end

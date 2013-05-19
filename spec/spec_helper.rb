@@ -42,3 +42,7 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 end
+
+def random_string
+  SecureRandom.hex(3)
+end

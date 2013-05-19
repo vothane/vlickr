@@ -30,7 +30,7 @@ describe Video do
   context "when creating a new video" do
 
     it "should be valid name" do
-      video.name.should == "Thor"
+      video.name.should == "Hear Me Roar!"
     end  
 
   end 
@@ -48,7 +48,7 @@ describe Video do
   context "when using scope querys" do
 
     it "should find recent videos" do
-      Video.recent.first.count.should == 1
+      Video.recent.count.should == 4
     end
 
   end  
