@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc1'
+gem 'rails', '4.0.0.rc2'
 gem 'activeresource', '4.0.0.beta1'
 gem 'puma'
 gem 'redis'
@@ -20,6 +20,8 @@ gem 'jbuilder', '~> 1.0.1'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
+
+gem 'json', '~> 1.7.7' 
 
 # Use unicorn as the app server
 # gem 'unicorn'

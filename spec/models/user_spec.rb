@@ -61,12 +61,12 @@ describe User do
 
   context "video associations" do
 
-    before do
-      @user = User.new(name: "Example User", email: "user@example.com", user_name: "user1",
-                       password: "SpreadingTheDiseaseOfFailure", password_confirmation: "SpreadingTheDiseaseOfFailure")
+    let(:abuser) do
+      User.new(name: "Example User", email: "user@example.com", user_name: "user1",
+               password: "SpreadingTheDiseaseOfFailure", password_confirmation: "SpreadingTheDiseaseOfFailure")
     end
 
-    before { @user.save }
+    before { abuser.save }
 
     let(:asset_video_1) do
       results = Asset.find(:one) do |vid|
@@ -93,12 +93,12 @@ describe User do
     end
 
     it "should have the right videos in the right order" do
-      expect(@user.videos.to_a).to eql([newer_video, older_video])
+      expect(abuser.videos.to_a).to eql([newer_video, older_video])
     end
 
     it "should destroy associated videos" do
-      videos = @user.videos.dup.to_a
-      @user.destroy
+      videos = abuser.videos.dup.to_a
+      abuser.destroy
       expect(videos).not_to be_empty
 
       videos.each do |video|
@@ -161,7 +161,7 @@ describe User do
 
     describe "followed user" do
       subject { other_user }
-      its(:followers) { should include(@user) }
+      its(:followers) { should include(abuser) }
     end
     
     describe "and unfollowing" do
@@ -179,7 +179,7 @@ describe User do
     let(:followed_user) { FactoryGirl.create(:user) }
 
     before do
-      @user.follow!(followed_user)
+      abuser.follow!(followed_user)
       3.times { followed_user.comments.create!(content: "Lorem ipsum") }
     end
 
