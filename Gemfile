@@ -10,13 +10,13 @@ gem 'sass-rails',   '4.0.0'
 gem 'coffee-rails', '4.0.0'
 gem 'uglifier',     '2.1.1'
 
-gem 'jquery-rails'
+gem 'jquery-rails', '2.2.1'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks', '1.1.1'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.0.2'
+gem 'jbuilder', '1.0.2'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '3.0.1'
