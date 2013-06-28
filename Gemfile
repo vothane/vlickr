@@ -1,25 +1,25 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc2'
-gem 'activeresource', '4.0.0.beta1'
+gem 'rails', '4.0.0'
+gem 'activeresource', '4.0.0'
 gem 'puma'
 gem 'redis'
 
-gem 'sass-rails',   '~> 4.0.0.rc1'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'uglifier',     '>= 1.3.0'
+gem 'sass-rails',   '4.0.0'
+gem 'coffee-rails', '4.0.0'
+gem 'uglifier',     '2.1.1'
 
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '1.1.1'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.0.1'
+gem 'jbuilder', '~> 1.0.2'
 
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '3.0.1'
 
 gem 'json', '~> 1.7.7' 
 
@@ -34,8 +34,8 @@ gem 'json', '~> 1.7.7'
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
+  gem 'rspec-rails', '2.13.1'
+  gem 'factory_girl_rails', '4.2.0'
   gem 'pry'
   gem 'awesome_print'
   gem 'better_errors'
