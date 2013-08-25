@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
 
   before_save Proc.new { |user| user.email.downcase! }
-  before_destroy Proc.new { |player| player.video.destroy }
+  #before_destroy Proc.new { |player| player.video.destroy }
   before_save :create_remember_token
 
   validates :name,  presence: true, length: { maximum: 50 }

@@ -9,7 +9,7 @@ class Video < ActiveRecord::Base
   
   before_destroy Proc.new { |video| video.asset.destroy }
 
-  validates :asset, :presence => true  
+  #validates :asset, :presence => true  
 
   delegate :name, :embed_code, :description, :duration, :status, :preview_image_url, :to => :asset
 end
