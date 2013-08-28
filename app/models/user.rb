@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   has_many :albums, dependent: :destroy, :extend => Copy
   has_many :videos, dependent: :destroy
-  has_many :comments, :as => :commentable
+  include Commentable
   
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed

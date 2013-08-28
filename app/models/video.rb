@@ -3,7 +3,7 @@ class Video < ActiveRecord::Base
  
   belongs_to :album
   belongs_to :user
-  has_many :comments, :as => :commentable
+  include Commentable
   
   scope :recent, -> { order('created_at desc').limit(6) }
   
