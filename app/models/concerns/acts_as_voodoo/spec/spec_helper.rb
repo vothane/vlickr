@@ -1,8 +1,5 @@
 require 'pry'
-require 'webmock/rspec'
-require 'timecop'
-require 'factory_girl'
-require 'vcr'
+require 'uri'
 
 $:.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
 
@@ -17,11 +14,53 @@ RSpec.configure do |config|
 
   # Use the specified formatter
   config.formatter = :documentation # :progress, :html, :textmate  
-
-  config.mock_with :rspec  
 end
 
-VCR.configure do |c|
-  c.cassette_library_dir = 'spec/support/vcr_cassettes'
-  c.hook_into :webmock
+def objectize_yaml(name)
+   data_yaml_file = File.open(File.dirname(__FILE__) + "/support/yaml/#{name}.yml", "r")
+   create_http_data( YAML::load(data_yaml_file) )
+end   
+
+def create_http_data(raw_data)
+   http_data               = OpenStruct.new
+   data                    = raw_data["http_interactions"].first
+   http_data.url           = data["request"]["uri"]
+   http_data.uri           = URI( data["request"]["uri"] )
+   http_data.request_body  = data["request"]["body"]["string"]
+   http_data.response_body = data["response"]["body"]["string"]
+   http_data
 end
+
+module OOYALA
+  def self.expires(expiration_window = 25)
+    1577898300
+  end
+end  
+
+class Asset < ActiveResource::Base
+  my_api_key = 'JkN2w61tDmKgPl4y395Rp1vAdlcq.IqBgb'
+  my_api_secret = 'nU2WjeYoEY0MJKtK1DRpp1c6hNRoHgwpNG76dJkX'
+
+  acts_as_voodoo :api_key => my_api_key, :api_secret => my_api_secret
+
+  self.site = "https://api.ooyala.com/v2"
+end
+
+class Label < ActiveResource::Base
+  my_api_key = 'JkN2w61tDmKgPl4y395Rp1vAdlcq.IqBgb'
+  my_api_secret = 'nU2WjeYoEY0MJKtK1DRpp1c6hNRoHgwpNG76dJkX'
+
+  acts_as_voodoo :api_key => my_api_key, :api_secret => my_api_secret
+
+  self.site = "https://api.ooyala.com/v2"
+end
+
+class Player < ActiveResource::Base
+  my_api_key = 'JkN2w61tDmKgPl4y395Rp1vAdlcq.IqBgb'
+  my_api_secret = 'nU2WjeYoEY0MJKtK1DRpp1c6hNRoHgwpNG76dJkX'
+
+  acts_as_voodoo :api_key => my_api_key, :api_secret => my_api_secret
+
+  self.site = "https://api.ooyala.com/v2"
+end
+

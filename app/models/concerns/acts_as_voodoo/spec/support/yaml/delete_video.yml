@@ -1,16 +1,14 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://api.ooyala.com/v2/labels?api_key=JkN2w61tDmKgPl4y395Rp1vAdlcq.IqBgb&expires=1388595900&signature=zMdUFUVOtCiosp4HeqLGv+oDrG+sWRWZrOF3t8VYWLk
+    method: delete
+    uri: https://api.ooyala.com/v2/assets/pqYXgzYjoCaPfZqTDXOZLuB2bptKvHZI?api_key=JkN2w61tDmKgPl4y395Rp1vAdlcq.IqBgb&expires=1577898300&signature=LfzXAEUdNdChBIOn4MTgWQPMk1FyGG1Otrb4Wc8p7JQ
     body:
       encoding: US-ASCII
-      string: ! '{"name":"new label"}'
+      string: ''
     headers:
-      Content-Type:
-      - application/json
       Accept:
-      - ! '*/*'
+      - application/json
       User-Agent:
       - Ruby
   response:
@@ -19,11 +17,13 @@ http_interactions:
       message: OK
     headers:
       Server:
-      - nginx/1.0.0
+      - nginx/1.2.5
       Date:
-      - Tue, 02 Apr 2013 21:31:55 GMT
+      - Fri, 28 Jun 2013 22:49:57 GMT
       Content-Type:
       - application/json;charset=utf-8
+      Content-Length:
+      - '0'
       Connection:
       - keep-alive
       Status:
@@ -35,19 +35,17 @@ http_interactions:
       - 'true'
       Cache-Control:
       - no-cache
-      Content-Length:
-      - '102'
       X-Ratelimit-Credits:
-      - '299'
+      - '295'
       X-Ratelimit-Reset:
-      - '60'
+      - '58'
       Ooyala-Server-Id:
-      - i-59f70937,i-38e3a140
+      - i-150e1c73,i-74e0a20c
       Ooyala-Request-Id:
-      - 621d4bf36d165fe090ccc0e9dcdd1fca
+      - 4310356419417f7b8cf116119aad7659
     body:
       encoding: US-ASCII
-      string: ! '{"name":"new label","full_name":"/new label","id":"afac54696d684e9cad29f4207f286e72","parent_id":null}'
+      string: ''
     http_version: 
-  recorded_at: Wed, 01 Jan 2014 17:00:00 GMT
-recorded_with: VCR 2.4.0
+  recorded_at: Wed, 01 Jan 2020 15:00:00 GMT
+recorded_with: VCR 2.5.0

@@ -1,11 +1,67 @@
+[![Code Climate](https://codeclimate.com/github/vothane/acts_as_voodoo.png)](https://codeclimate.com/github/vothane/acts_as_voodoo)
+
 Ooyala API V2 wrapper for Ruby (using ActiveResource) 
 ====================================================
 
 VOODOO - V<del>IDEO</del> <del>T</del>OO<del>LKIT</del> and D<del>ATA</del> for OO<del>YALA</del>
- 
-This is a Ruby wrapper for the [OOYALA V2 API](http://api.ooyala.com/docs/v2) API that leverages ActiveResource.
 
-It allows you to interface with the Ooyala v2 API using simple ActiveRecord-like syntax, i.e.:
+ActiveResource client that consumes a non-REST API [OOYALA V2 API](http://api.ooyala.com/docs/v2).
+
+ActiveResource code base was heavily modified during the development process to process the non-RESTful HTTP requests.
+
+It allows you to interface with the Ooyala v2 API using simple ActiveRecord-like syntax and provides a DSL for querying video records that abstracts away the SQL like queries expected by this API.
+
+## Requirements
+
+- Ruby 1.9.3 or greater
+- ActiveResource 4.0.0
+- ActiveSupport  4.0.0
+
+See the `examples` directory for more usage examples.
+
+### Installation
+
+`cd <PATH>/acts_as_voodoo`
+
+`bundle install`
+
+### Usage
+
+<table>
+  <caption>Query equality and relational operators</caption>
+  <tr>
+    <td><tt>==</tt></td>
+    <td>equals</td>
+  </tr>
+  <tr>
+    <td><tt>&gt;&#61;</tt></td>
+    <td>greater than or equal to</td>
+  </tr>
+  <tr>
+    <td><tt>&lt;&#61;</tt></td>
+    <td>less than or equal to</td>
+  </tr>
+  <tr>
+    <td><tt>&gt;</tt></td>
+    <td>greater than</td>
+  </tr>
+  <tr>
+    <td><tt>&lt;</tt></td>
+    <td>less than</td>
+  </tr>
+  <tr>
+    <td><tt>&#33;&#61;</tt></td>
+    <td>not equal to</td>
+  </tr>
+  <tr>
+    <td><tt>*</tt></td>
+    <td>Get assets IN list of embed codes <tt>vid.embed_code * "('g0YzBnMjoGiHUtGoWW4pFzzhTZpKLZUi','g1YzBnMjrEWdqX0gNdtKwTwQREhEkf9e')"</tt></td>
+  </tr>
+  <tr>
+    <td><tt>=~</tt></td>
+    <td>INCLUDES for querying assets within labels <tt>vid.labels =~ "Case Study"</tt> gives assets contained in label "Case Study"</td>
+  </tr>
+</table>
 
 ``` ruby
 class Asset < ActiveResource::Base
@@ -27,14 +83,6 @@ results = Asset.find(:one) do |vid|
 end
 ```
 
-See the `examples` directory for more usage examples.
-
-### Installation
-
-beta only, not yet published as a gem.
-
-### Usage
-
 The Query API can be used to request detailed information about your assets.
 
 Queries are built using a SQL-like interface.
@@ -46,13 +94,41 @@ A sample query might look like:
 So using acts_as_voodoo, you would do this
 
 ``` ruby
-results = Asset.find(:one) do |vid|
+results = Asset.find(:first) do |vid|
    vid.description == "Under the sea."
    vid.duration > 600
 end
 ```
 
 ### Query API Examples
+
+> For scopes, you can use `:all`, `:first`, `:last`. 
+>
+> `:one` is not working as of now.
+>
+> scopes of integer id values are not recognized by the API. Use embed codes in place of integer IDs.
+> 
+> Note: 
+> `:all` will give an array of AR instances.
+> `:first` or `:last` will give an instance of AR.
+
+Find all assets.
+
+``` ruby
+Asset.all
+```
+
+Find a single asset by name.
+
+``` ruby
+Asset.find(:first) { |vid| vid.name == "Iron Sky" }
+```
+
+Find a single asset by embed code.
+
+``` ruby
+Asset.find('9nbnkwYjqofX8NsCm9vISLV6iJ6bRZod')
+```
 
 The first 5 movies where the description is "Under the sea." that are greater than ten minutes long. The videos are ordered by created_at in ascending order.
 
@@ -75,7 +151,7 @@ SELECT * WHERE embed_code IN ('g0YzBnMjoGiHUtGoWW4pFzzhTZpKLZUi',
 /v2/assets?where=embed_code IN ('g0YzBnMjoGiHUtGoWW4pFzzhTZpKLZUi','g1YzBnMjrEWdqX0gNdtKwTwQREhEkf9e')
 
 ``` ruby
-results = Asset.find(:one) do |vid|
+results = Asset.find(:first) do |vid|
    vid.embed_code * "('g0YzBnMjoGiHUtGoWW4pFzzhTZpKLZUi','g1YzBnMjrEWdqX0gNdtKwTwQREhEkf9e')"
 end
 ```

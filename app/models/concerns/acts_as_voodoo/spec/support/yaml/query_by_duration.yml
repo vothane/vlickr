@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.ooyala.com/v2/labels?api_key=JkN2w61tDmKgPl4y395Rp1vAdlcq.IqBgb&expires=1388595900&signature=ylCha9pRjzxdjaOob3cb6J0GzFyYqOSodsmBQ7hdJ6w
+    uri: https://api.ooyala.com/v2/assets?api_key=JkN2w61tDmKgPl4y395Rp1vAdlcq.IqBgb&expires=1577898300&signature=q6j6t8BXwAb0iSNGV07RaNN%2B%2B6Xa%2BYvpSBLMV3NgmGQ&where=duration%3C600
     body:
       encoding: US-ASCII
       string: ''
@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - nginx/1.0.0
       Date:
-      - Tue, 02 Apr 2013 21:31:57 GMT
+      - Fri, 28 Jun 2013 22:56:10 GMT
       Content-Type:
       - application/json;charset=utf-8
       Connection:
@@ -36,21 +36,21 @@ http_interactions:
       Cache-Control:
       - no-cache
       X-Ratelimit-Credits:
-      - '298'
+      - '295'
       X-Ratelimit-Reset:
-      - '58'
+      - '57'
       Ooyala-Server-Id:
-      - i-c080e0ba,i-f0e3a188
+      - i-1d0f1d7b,i-f0e3a188
       Ooyala-Request-Id:
-      - 7facf3bc470f6f597eb836bfdcf015af
+      - b0225c6f45fb035b0191618de0355174
       X-Varnish-Ip:
       - 10.251.243.175
       Content-Length:
-      - '336'
+      - '410'
       Accept-Ranges:
       - bytes
       X-Varnish:
-      - '931635978'
+      - '1259616496'
       Via:
       - 1.1 varnish
       Age:
@@ -59,9 +59,8 @@ http_interactions:
       - MISS
     body:
       encoding: US-ASCII
-      string: ! '{"items":[{"name":"Movie Trailer","full_name":"/Movie Trailer","id":"b5e9bf9a0e5a4b31991cfdf9218c4342","parent_id":null},{"name":"new
-        label","full_name":"/new label","id":"afac54696d684e9cad29f4207f286e72","parent_id":null},{"name":"TV
-        Commercial","full_name":"/TV Commercial","id":"3329684004c444d3b7b03707dcdaf7d0","parent_id":null}]}'
+      string: ! '{"items":[{"asset_type":"channel","created_at":"2013-06-28T22:49:58Z","description":null,"duration":0,"embed_code":"5xbGV2YzqpldVKQESMLonC5uyE5MMqsc","external_id":null,"name":"new
+        channel","preview_image_url":null,"status":"live","time_restrictions":null,"updated_at":"2013-06-28T22:49:58Z","hosted_at":null,"original_file_name":null,"publishing_rule_id":"37aa7371be4f4937b40bb12966f28235","ad_set_id":null}]}'
     http_version: 
-  recorded_at: Wed, 01 Jan 2014 17:00:00 GMT
-recorded_with: VCR 2.4.0
+  recorded_at: Wed, 01 Jan 2020 15:00:00 GMT
+recorded_with: VCR 2.5.0
