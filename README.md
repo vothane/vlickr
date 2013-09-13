@@ -12,3 +12,8 @@ Tests
     $ bundle exec rake db:migrate
     $ bundle exec rake db:test:prepare
     $ bundle exec rspec spec/
+
+Run app
+
+    $ rails s Puma
+
