@@ -15,5 +15,7 @@ Tests
 
 Run app
 
+    $ rake db:seed
     $ rails s Puma
 
+You can login with any of the users defined in ./db/seed.rb
