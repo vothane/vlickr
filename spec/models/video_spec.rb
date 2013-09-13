@@ -2,17 +2,29 @@ require "spec_helper"
 
 describe Video do
 
-  let(:asset_video) do
-    results = Asset.find(:one) do |vid|
-      vid.description == "Thor"
-      vid.duration > 600
+  module OOYALA
+    def self.expires(expiration_window = 25)
+      1577898300
     end
-    results.first
   end  
+
+  http_data = objectize_yaml('query_by_description')        
+  ActiveResource::HttpMock.respond_to { |mock| mock.get "/v2/assets?api_key=JkN2w61tDmKgPl4y395Rp1vAdlcq.IqBgb&expires=1577898300&signature=qIJSWnyLjbS6zDEvfzlWDRwRIfpd2DKgNG2nRuoco4U&where=description%3D%27Iron+Man%2C+Thor%2C+Captain+America%2C+and+the+Hulk%27", {"Accept"=>"application/json"}, http_data.response_body }
+     
+  results = Asset.find(:all) do |vid|
+    vid.description == "Iron Man, Thor, Captain America, and the Hulk"
+  end
+
+  asset_video = results.first
 
   let(:video) do
     video = Video.new
     video.asset = asset_video
+    video
+  end  
+
+  let(:bad_video) do
+    video = Video.new
     video
   end  
 
@@ -27,13 +39,28 @@ describe Video do
 
   it { should be_valid }
 
-  context "when creating a new video" do
+  context "when calling delegate methods on a video model instance" do
 
-    it "should be valid name" do
-      video.name.should == "Hear Me Roar!"
-    end  
+    it "should call asset destroy method in before_destroy callback" do
 
-  end 
+      video.name.should == "Avengers"
+      video.embed_code  == "o1NmdxMzrrWwbOVk_wIqhw-AmhlOMO49" 
+      video.description == "Nick Fury, the director of S.H.I.E.L.D., assembles a group of superheroes that includes Iron Man, Thor, Captain America, and the Hulk to fight a new enemy that is threatening the safety of the world."
+      video.duration    == 143477
+      video.status      == "live"
+      video.preview_image_url == "http://ak.c.ooyala.com/o1NmdxMzrrWwbOVk_wIqhw-AmhlOMO49/j14TFkN_kLvndon35hMDoxOmFkO7UOTK"
+
+    end
+
+  end   
+
+  context "when destroying video instance" do
+
+    it "should call asset destroy method in before_destroy callback" do
+      bad_video.save
+    end
+
+  end  
 
   context "when destroying video instance" do
 

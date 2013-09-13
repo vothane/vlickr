@@ -29,17 +29,6 @@ describe User do
   it { should be_valid }
   it { should_not be_admin }
 
-  context "callbacks" do
-    describe "#save_user!" do
-      it "downcases email" do
-        user.email.should_receive(:downcase).and_return("john.ghay@nuthouse.com")
-        user.email = "John.Ghay@NutHouse.com"
-        user.save
-        user.email.should == "john.ghay@nuthouse.com"
-      end
-    end
-  end
-
   context "when email" do
     it "should be invalid" do
       addresses = %w[user@foo,com user_at_foo.org example.user@foo.
@@ -68,21 +57,30 @@ describe User do
 
     before { user.save }
 
-    let(:asset_video_1) do
-      results = Asset.find(:one) do |vid|
-        vid.description == "Thor"
-        vid.duration > 600
+    module OOYALA
+      def self.expires(expiration_window = 25)
+        1577898300
       end
-      results.first
     end  
 
-    let(:asset_video_2) do
-      results = Asset.find(:one) do |vid|
-        vid.description == "Avengers"
-        vid.duration > 600
-      end
-      results.first
-    end  
+    http_data = objectize_yaml('query_by_description')        
+    ActiveResource::HttpMock.respond_to { |mock| mock.get "/v2/assets?api_key=JkN2w61tDmKgPl4y395Rp1vAdlcq.IqBgb&expires=1577898300&signature=qIJSWnyLjbS6zDEvfzlWDRwRIfpd2DKgNG2nRuoco4U&where=description%3D%27Iron+Man%2C+Thor%2C+Captain+America%2C+and+the+Hulk%27", {"Accept"=>"application/json"}, http_data.response_body }
+       
+    results = Asset.find(:all) do |vid|
+      vid.description == "Iron Man, Thor, Captain America, and the Hulk"
+    end
+
+    asset_video_1 = results.first
+
+    http_data = objectize_yaml('query_by_union')        
+    ActiveResource::HttpMock.respond_to { |mock| mock.get "/v2/assets?api_key=JkN2w61tDmKgPl4y395Rp1vAdlcq.IqBgb&expires=1577898300&signature=W%2Fu%2B4lm2HHr5cMDXhkyJXZTQgPjOY2bdyTWbvkgn4jM&where=description%3D%27Thor%27+AND+labels+INCLUDES+%27Movie+Trailer%27", {"Accept"=>"application/json"}, http_data.response_body }
+    
+    results = Asset.find(:all) do |vid|
+      vid.description == "Thor"
+      vid.labels =~ "Movie Trailer"
+    end
+    
+    asset_video_2 = results.first
 
     let!(:older_video) do
       FactoryGirl.create(:video, asset: asset_video_1, created_at: 1.day.ago)

@@ -46,3 +46,18 @@ end
 def random_string
   SecureRandom.hex(3)
 end
+
+def objectize_yaml(name)
+   data_yaml_file = File.open(File.dirname(__FILE__) + "/support/yaml/#{name}.yml", "r")
+   create_http_data( YAML::load(data_yaml_file) )
+end   
+
+def create_http_data(raw_data)
+   http_data               = OpenStruct.new
+   data                    = raw_data["http_interactions"].first
+   http_data.url           = data["request"]["uri"]
+   http_data.uri           = URI( data["request"]["uri"] )
+   http_data.request_body  = data["request"]["body"]["string"]
+   http_data.response_body = data["response"]["body"]["string"]
+   http_data
+end
